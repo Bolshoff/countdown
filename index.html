@@ -1,0 +1,36 @@
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="./img/countdown.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Countdown</title>
+
+</head>
+<body>
+    <div class = "countdown" >
+        <form class="countdown__input-form" >
+            <label>
+                <input class="countdown__input" type="date" placeholder="Input Date in format mm.dd.yyyy">
+            </label>
+                <input class="countdown__input_button" type="submit">
+                <input class="reset_button" type="button" value="Сброс">
+        </form>
+        <div class="countdown__elements">
+            <div class ="countdown__element "><span class="countdown__span years"></span>Years</div>
+            <div class ="countdown__element "><span class="countdown__span months"></span>Months</div>
+            <div class ="countdown__element "><span class="countdown__span days"></span>Days</div>
+            <div class ="countdown__element  "><span class="countdown__span hours"></span>Hours</div>
+            <div class ="countdown__element  "><span class="countdown__span minutes"></span>Minutes</div>
+            <div class ="countdown__element  "><span class="countdown__span seconds"></span>Seconds</div>
+        </div>
+    </div>
+<script type="module" src="index.js"></script>
+</body>
+</html>
