@@ -1,8 +1,9 @@
 
 import {UI_ELEMENTS} from './view.js';
+import intervalToDuration from 'date-fns/intervalToDuration'
 
 let timer;
-let remainingTime ;
+
 let targetDate;
 
 startTimerAfterRebootPage();
@@ -19,15 +20,13 @@ UI_ELEMENTS.inputForm.addEventListener('submit',(e)=>{
 function startTimer(targetDate){
 
   localStorage.setItem('targetDate', targetDate);
-  let countdownTime = new Date(targetDate).getTime();
 
-  if(countdownTime > new Date().getTime()) {
 
-    timer = setInterval(countDown, 1000, countdownTime);
+    timer = setInterval(countDown, 1000,targetDate);
 
     UI_ELEMENTS.input.value = '';
 
-  }else alert('Дата в прошлом!');
+
 }
 
 function resetTimer(){
@@ -43,31 +42,27 @@ function resetTimer(){
 
 UI_ELEMENTS.resetButton.addEventListener('click', resetTimer);
 
-function countDown(countdownTime){
-  const currentTime = new Date().getTime();
-   remainingTime = countdownTime - currentTime;
-  let days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-  let year = Math.floor(days/365);
-  let month = Math.floor((days - Math.floor(days/365)*365)/30.5) ;
-  let day = Math.floor(days - Math.floor(year*365) - Math.floor(month * 30.5));
-  (day < 10) ? (UI_ELEMENTS.days.innerHTML = "0"  + day) : (UI_ELEMENTS.days.innerHTML =  day);
+function countDown(targetDate){
 
-  (hours < 10) ? (UI_ELEMENTS.hours.innerHTML = "0" + hours) : (UI_ELEMENTS.hours.innerHTML =  hours);
 
-  (minutes < 10) ? (UI_ELEMENTS.minutes.innerHTML = "0" + minutes) : (UI_ELEMENTS.minutes.innerHTML = minutes);
+  let time  = intervalToDuration({
+    start: new Date(),
+    end: new Date(targetDate)
+  });
 
-  (seconds < 10) ? (UI_ELEMENTS.seconds.innerHTML = "0" + seconds) : (UI_ELEMENTS.seconds.innerHTML = seconds);
+  (time.days < 10) ? (UI_ELEMENTS.days.innerHTML = "0"  + time.days) : (UI_ELEMENTS.days.innerHTML =  time.days);
 
-  (year < 10) ? (UI_ELEMENTS.years.innerHTML = "0" + year) : (UI_ELEMENTS.years.innerHTML = year);
+  (time.hours < 10) ? (UI_ELEMENTS.hours.innerHTML = "0" + time.hours) : (UI_ELEMENTS.hours.innerHTML =  time.hours);
 
-  (month < 10) ? (UI_ELEMENTS.month.innerHTML = "0" + month) : (UI_ELEMENTS.month.innerHTML = month);
+  (time.minutes < 10) ? (UI_ELEMENTS.minutes.innerHTML = "0" + time.minutes) : (UI_ELEMENTS.minutes.innerHTML = time.minutes);
 
-  if(remainingTime === 0) {
-    clearInterval(timer);
-  }
+  (time.seconds < 10) ? (UI_ELEMENTS.seconds.innerHTML = "0" + time.seconds) : (UI_ELEMENTS.seconds.innerHTML = time.seconds);
+
+  (time.years < 10) ? (UI_ELEMENTS.years.innerHTML = "0" + time.years) : (UI_ELEMENTS.years.innerHTML = time.years);
+
+  (time.months < 10) ? (UI_ELEMENTS.month.innerHTML = "0" + time.months) : (UI_ELEMENTS.month.innerHTML = time.months);
+
+
 
 }
 function startTimerAfterRebootPage(){
@@ -75,3 +70,4 @@ function startTimerAfterRebootPage(){
  startTimer(date);
 
 }
+
