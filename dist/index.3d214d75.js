@@ -523,6 +523,7 @@ let targetDate;
 startTimerAfterRebootPage();
 _viewJs.UI_ELEMENTS.inputForm.addEventListener('submit', (e)=>{
     e.preventDefault();
+    resetTimer();
     targetDate = _viewJs.UI_ELEMENTS.input.value;
     startTimer(targetDate);
 });
@@ -534,12 +535,12 @@ function startTimer(targetDate1) {
 function resetTimer() {
     clearInterval(timer);
     localStorage.removeItem('targetDate');
-    _viewJs.UI_ELEMENTS.days.innerHTML = '';
-    _viewJs.UI_ELEMENTS.hours.innerHTML = '';
-    _viewJs.UI_ELEMENTS.minutes.innerHTML = '';
-    _viewJs.UI_ELEMENTS.seconds.innerHTML = '';
-    _viewJs.UI_ELEMENTS.years.innerHTML = '';
-    _viewJs.UI_ELEMENTS.month.innerHTML = '';
+    _viewJs.UI_ELEMENTS.days.innerHTML = '00';
+    _viewJs.UI_ELEMENTS.hours.innerHTML = '00';
+    _viewJs.UI_ELEMENTS.minutes.innerHTML = '00';
+    _viewJs.UI_ELEMENTS.seconds.innerHTML = '00';
+    _viewJs.UI_ELEMENTS.years.innerHTML = '00';
+    _viewJs.UI_ELEMENTS.month.innerHTML = '00';
 }
 _viewJs.UI_ELEMENTS.resetButton.addEventListener('click', resetTimer);
 function countDown(targetDate2) {

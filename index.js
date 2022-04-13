@@ -12,6 +12,7 @@ startTimerAfterRebootPage();
 
 UI_ELEMENTS.inputForm.addEventListener('submit',(e)=>{
   e.preventDefault();
+  resetTimer();
   targetDate = UI_ELEMENTS.input.value;
   startTimer(targetDate);
 
@@ -32,12 +33,12 @@ function startTimer(targetDate){
 function resetTimer(){
   clearInterval(timer);
   localStorage.removeItem('targetDate');
-  UI_ELEMENTS.days.innerHTML = '';
-  UI_ELEMENTS.hours.innerHTML ='';
-  UI_ELEMENTS.minutes.innerHTML ='';
-  UI_ELEMENTS.seconds.innerHTML ='';
-  UI_ELEMENTS.years.innerHTML ='';
-  UI_ELEMENTS.month.innerHTML ='';
+  UI_ELEMENTS.days.innerHTML = '00';
+  UI_ELEMENTS.hours.innerHTML ='00';
+  UI_ELEMENTS.minutes.innerHTML ='00';
+  UI_ELEMENTS.seconds.innerHTML ='00';
+  UI_ELEMENTS.years.innerHTML ='00';
+  UI_ELEMENTS.month.innerHTML ='00';
 }
 
 UI_ELEMENTS.resetButton.addEventListener('click', resetTimer);
