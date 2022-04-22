@@ -7,7 +7,7 @@ body {
 .countdown{
     font-family: 'Roboto', sans-serif;
     position: absolute;
-    margin: 25% 25% 0% 30%;
+    margin: 15% 25% 0% 30%;
 }
 .countdown__elements{
     position: relative;
