@@ -1,5 +1,14 @@
+body {
+  background-image: url("background.c43b05dc.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .countdown {
+  margin: 25% 25% 0% 30%;
   font-family: Roboto, sans-serif;
+  position: absolute;
 }
 
 .countdown__elements {
